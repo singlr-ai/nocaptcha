@@ -1,0 +1,20 @@
+
+# Editor directories and files
+.idea/
+*.iml
+*.iws
+.vscode/*
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+**/target/
+
+# GCP config
+app.yaml
+.gcloudignore
+
+**/.doc-uploads/
+**/.doc-downloads/

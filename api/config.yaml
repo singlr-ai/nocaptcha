@@ -1,0 +1,10 @@
+server:
+  port: 9080
+  host: 0.0.0.0
+  max-payload-size: 10485760
+
+wan:
+  id: singlr.ai
+  name: Singular
+  origins: https://singlr.ai
+

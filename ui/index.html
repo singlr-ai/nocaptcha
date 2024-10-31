@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Singular | Nocaptcha</title>
+    </head>
+    <body>
+        <div id="app">
+            <no-captcha
+                data-init="onInit"
+                data-verified="onVerify"
+            ></no-captcha>
+        </div>
+        <script src="/nocaptcha.js"></script>
+        <script>
+            NoCaptcha.init({
+                onInit: function () {
+                    console.log("NoCaptcha initialized");
+                },
+                onVerify: function (result) {
+                    console.log("Verification complete:", result);
+                },
+            });
+        </script>
+    </body>
+</html>
