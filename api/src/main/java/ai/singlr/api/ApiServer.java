@@ -56,8 +56,9 @@ public class ApiServer {
   }
 
   private void startApiServer(ObjectMapper objectMapper) {
+    var serverConfig = Config.global().get("server");
     WebServer server = WebServer.builder()
-        .config(Config.global().get("server"))
+        .config(serverConfig)
         .mediaContext(it -> it
             .mediaSupportsDiscoverServices(false)
             .addMediaSupport(MultiPartSupport.create(Config.global()))
@@ -66,7 +67,7 @@ public class ApiServer {
         .routing(this::setupApiRoutes)
         .addFeature(AccessLogFeature.builder().sockets(Set.of("@default")).build())
         .putSocket("observe", socket -> socket
-            .port(8085)
+            .port(serverConfig.get("hport").asInt().get())
             .routing(routing -> routing
                 .get("/health/ready", (req, res) -> res.send("UP"))
                 .get("/health/live", (req, res) -> res.send("UP"))
