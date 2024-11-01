@@ -13,6 +13,15 @@
 
   const BASE_URI = import.meta.env.VITE_API_URL;
 
+  const firstCallback = function () {
+    if (callbacks.onInit) callbacks.onInit();
+
+    const id = sessionStorage.getItem("no-captcha-id");
+    if (id) {
+      if (callbacks.onVerify) callbacks.onVerify();
+    }
+  };
+
   class Utils {
     static base64UrlEncode(value) {
       return btoa(String.fromCharCode(...new Uint8Array(value)))
@@ -369,15 +378,11 @@
             }
           `;
       this.shadowRoot.querySelector("style").textContent += additionalStyles;
-    }
-
-    connectedCallback() {
       // Get callback functions from data attributes
       if (this.dataset.init) callbacks.onInit = window[this.dataset.init];
       if (this.dataset.verified)
         callbacks.onVerify = window[this.dataset.verified];
-
-      if (callbacks.onInit) callbacks.onInit();
+      firstCallback();
     }
 
     setLoading(isLoading) {
@@ -404,9 +409,6 @@
     }
 
     async startVerification() {
-      // Check local storage for a valid credential.
-      const id = localStorage.getItem("no-captcha-id");
-
       this.setLoading(true);
       var result = await window.NoCaptcha.api.captchaStart(true);
       this.setLoading(false);
@@ -439,8 +441,9 @@
         };
 
         this.setLoading(true);
+        const base64Id = result.value.base64Id;
         result = await window.NoCaptcha.api.captchaComplete(
-          result.value.base64Id,
+          base64Id,
           decodedCredentials,
         );
         this.setLoading(false);
@@ -449,7 +452,7 @@
           this.setGenericError();
           return;
         } else {
-          localStorage.setItem("no-captcha-id", id);
+          sessionStorage.setItem("no-captcha-id", base64Id);
           if (callbacks.onVerify) callbacks.onVerify(result);
         }
       } catch (e) {
@@ -471,7 +474,7 @@
       if (options.onInit) callbacks.onInit = options.onInit;
       if (options.onVerify) callbacks.onVerify = options.onVerify;
 
-      if (callbacks.onInit) callbacks.onInit();
+      firstCallback();
     },
   };
 })(window);

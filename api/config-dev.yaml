@@ -1,7 +1,7 @@
 restrictive-cors:
-  allow-origins: ["http://localhost:3080"]
+  allow-origins: ["http://localhost:3080","http://localhost:9000"]
   allow-methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 
 wan:
   id: localhost
-  origins: http://localhost:3080
+  origins: http://localhost:3080,http://localhost:9000

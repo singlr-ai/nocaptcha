@@ -18,6 +18,8 @@ import io.helidon.webserver.WebServer;
 import io.helidon.webserver.accesslog.AccessLogFeature;
 import io.helidon.webserver.cors.CorsSupport;
 import io.helidon.webserver.http.HttpRouting;
+import io.helidon.webserver.staticcontent.StaticContentService;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -31,8 +33,6 @@ public class ApiServer {
 
   private static final Logger LOGGER = Logger.getLogger(ApiServer.class.getName());
 
-  private Profile profile;
-
   /**
    * Starts the web server.
    */
@@ -41,7 +41,7 @@ public class ApiServer {
     objectMapper.registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     Utils.init(objectMapper);
-    this.profile = Utils.profile();
+    Profile profile = Utils.profile();
 
     if (Profile.dev == profile) {
       Map<String, String> configMap = Config.global().asMap().get();
@@ -93,5 +93,9 @@ public class ApiServer {
         corsSupport,
         new NoCaptchaService()
     );
+
+    routing.register("/", StaticContentService.builder("/dist")
+        .welcomeFileName("index.html")
+        .build());
   }
 }
