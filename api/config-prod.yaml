@@ -1,6 +1,6 @@
 restrictive-cors:
-  allow-origins: ["https://singlr.ai"]
+  allow-origins: ["https://singlr.ai", "https://demo.singlr.ai"]
   allow-methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 
 server:
-  port: 8080
+  port: 7080
