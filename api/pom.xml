@@ -43,10 +43,6 @@
       <artifactId>helidon-http-media-jackson</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-    </dependency>
-    <dependency>
       <groupId>io.helidon.security</groupId>
       <artifactId>helidon-security</artifactId>
     </dependency>
@@ -90,10 +86,6 @@
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka-clients</artifactId>
     </dependency>
 
     <dependency>

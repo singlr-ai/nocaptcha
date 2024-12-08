@@ -95,21 +95,6 @@
         <version>${helidon.version}</version>
       </dependency>
       <dependency>
-          <groupId>io.helidon.dbclient</groupId>
-          <artifactId>helidon-dbclient-jdbc</artifactId>
-          <version>${helidon.version}</version>
-      </dependency>
-      <dependency>
-          <groupId>io.helidon.dbclient</groupId>
-          <artifactId>helidon-dbclient-hikari</artifactId>
-          <version>${helidon.version}</version>
-      </dependency>
-      <dependency>
-          <groupId>io.helidon.integrations.db</groupId>
-          <artifactId>helidon-integrations-db-pgsql</artifactId>
-          <version>${helidon.version}</version>
-      </dependency>
-      <dependency>
         <groupId>io.helidon.security</groupId>
         <artifactId>helidon-security</artifactId>
         <version>${helidon.version}</version>
@@ -169,21 +154,6 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-jdk14</artifactId>
         <version>${slf4j-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>${postgres-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka-clients</artifactId>
-        <version>${kafka-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka-streams</artifactId>
-        <version>${kafka-version}</version>
       </dependency>
 
       <dependency>
